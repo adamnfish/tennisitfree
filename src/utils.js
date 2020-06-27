@@ -1,4 +1,3 @@
-
 function groupCount(as) {
     const answer = as.reduce(function(acc, a){
         if (acc.some((entry) => entry[1] == a)) {

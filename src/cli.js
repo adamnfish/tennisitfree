@@ -13,7 +13,8 @@ if (dateArg.toLowerCase().startsWith('tod')) {
     date.setDate(date.getDate() + count);
 }
 const dateStr = utils.formatDate(date);
-console.log("Checking courts for date:", dateStr);
+const dayName = date.toLocaleDateString("en-GB", { weekday: 'long' });
+console.log("Checking courts for date:", dayName, dateStr);
 
 
 (async () => {
