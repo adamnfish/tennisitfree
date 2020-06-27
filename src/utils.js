@@ -20,4 +20,34 @@ function formatDate(date) {
     return date.getFullYear() + "-" + (String("00" + month).slice(-2)) + "-" + date.getDate();
 }
 
-module.exports = {groupCount, formatDate};
+function resolveDate(rawDateArg, today) {
+    let date = new Date(today);
+    const dateArg = rawDateArg || 'today';
+    if (dateArg.toLowerCase().startsWith('tod')) {
+        // all good
+    } else if (dateArg.toLowerCase().startsWith('tom')) {
+        date.setDate(date.getDate() + 1);
+    } else if (dateArg.startsWith('+')) {
+        const count = parseInt(dateArg.substr(1), 10);
+        date.setDate(date.getDate() + count);
+    }
+    return date;
+}
+
+function formatResult(contents) {
+    let result = "";
+    const counted = groupCount(contents);
+    counted.sort((el1, el2) => {
+        el1[1].localeCompare(el2[1]);
+    });
+    if (counted.length == 0) {
+        result = "No courts available";
+    } else {
+        counted.forEach((elCount) => {
+            result = result + elCount[1] + " " + elCount[0] + " available\n";
+        });
+    }
+    return result;
+}
+
+module.exports = {groupCount, formatDate, resolveDate, formatResult};

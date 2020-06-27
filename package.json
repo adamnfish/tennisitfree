@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "cli": "node src/cli.js $*",
+    "cli2": "node src/cli2.js $*",
     "test": "jest"
   },
   "author": "adamnfish",
   "license": "ISC",
   "dependencies": {
+    "jsdom": "^16.2.2",
+    "node-fetch": "^2.6.0",
     "playwright": "^1.1.1"
   },
   "devDependencies": {
